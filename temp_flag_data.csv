@@ -1,0 +1,105 @@
+Subject ID,Visit in EDC,Visit Number,Sample Collection Date,Lab Draw Date,Flag
+C1131040009,Day 1,V2,NA,2025-03-05,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040009,Day 3,V3,2025-03-07,NA,Not in Lab
+C1131040001,Day 1,V2,NA,2025-02-24,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090052,Day 1,V2,NA,2025-04-01,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040015,Day 1,V2,NA,2025-03-05,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040015,Day 29,V5,2025-03-12,2025-03-31,Date mismatch
+C1131040015,Day 3,V3,2025-03-07,NA,Not in Lab
+C1131040073,Day 1,V2,NA,2025-04-01,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090031,Day 1,V2,NA,2025-03-25,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040068,Day 1,V2,NA,2025-03-31,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040082,Day 1,V2,NA,2025-04-02,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090012,Day 1,V2,NA,2025-03-26,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040069,Day 1,V2,NA,2025-03-31,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040005,Day 1,V2,NA,2025-02-26,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040005,Day 29,V5,2025-03-24,NA,Not in Lab
+C1131090008,Day 1,V2,NA,2025-03-10,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090009,Day 1,V2,NA,2025-03-10,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040038,Day 1,V2,NA,2025-03-12,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040016,Day 1,V2,NA,2025-03-05,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040016,Day 3,V3,2025-03-07,NA,Not in Lab
+C1131040036,Day 1,V2,NA,2025-03-12,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040004,Day 1,V2,2025-03-25,2025-02-25,Date mismatch
+C1131040004,Day 29,V5,2025-03-24,NA,Not in Lab
+C1131090015,Day 1,V2,NA,2025-03-17,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040037,Day 1,V2,NA,2025-03-12,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090013,Day 1,V2,NA,2025-03-17,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090013,Day 8,V4,2025-03-24,NA,Not in Lab
+C1131090056,Day 1,V2,NA,2025-03-31,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090056,Day 8,V4,2025-04-07,NA,Not in Lab
+C1131010004,Day 1,V2,2025-03-26,NA,Not in Lab
+C1131010004,Day 3,V3,2025-03-28,NA,Not in Lab
+C1131010004,Day 8,V4,2025-04-02,NA,Not in Lab
+C1131040021,Day 1,V2,NA,2025-03-11,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040079,Day 1,V2,NA,2025-04-02,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090065,Day 1,V2,NA,2025-04-01,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090049,Day 1,V2,NA,2025-04-01,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040057,Day 1,V2,NA,2025-03-18,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040057,Day 8,V4,2025-03-24,NA,Not in Lab
+C1131090064,Day 1,V2,NA,2025-04-01,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040010,Day 1,V2,NA,2025-03-10,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131020002,Day 1,V2,NA,NA,Not in Lab
+C1131020002,Day 3,V3,2025-03-28,NA,Not in Lab
+C1131020002,Day 8,V4,NA,NA,Not in Lab
+C1131090014,Day 1,V2,NA,2025-03-17,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040008,Day 1,V2,NA,2025-03-05,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040008,Day 3,V3,2025-03-07,NA,Not in Lab
+C1131040091,Day 1,V2,NA,2025-04-02,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090057,Day 1,V2,NA,2025-04-01,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040063,Day 1,V2,NA,2025-03-26,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090067,Day 1,V2,NA,2025-04-01,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040050,Day 1,V2,NA,2025-03-17,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040050,Day 8,V4,2025-03-24,NA,Not in Lab
+C1131040042,Day 1,V2,NA,2025-03-17,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040042,Day 8,V4,2025-03-24,NA,Not in Lab
+C1131040080,Day 1,V2,NA,2025-04-02,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040058,Day 1,V2,NA,2025-03-31,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090003,Day 1,V2,NA,2025-02-26,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040025,Day 1,V2,NA,2025-03-10,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040017,Day 1,V2,NA,2025-03-18,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040017,Day 8,V4,2025-03-24,NA,Not in Lab
+C1131040049,Day 1,V2,NA,2025-03-18,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040049,Day 8,V4,2025-03-24,NA,Not in Lab
+C1131040065,Day 1,V2,NA,2025-03-26,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131020004,Day 3,V3,NA,NA,Not in Lab
+C1131090048,Day 1,V2,NA,2025-03-31,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090048,Day 8,V4,2025-04-07,NA,Not in Lab
+C1131040043,Day 1,V2,NA,2025-03-26,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090010,Day 1,V2,NA,2025-03-10,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090010,Day 29,V5,2025-04-07,NA,Not in Lab
+C1131020005,Day 3,V3,2025-04-02,NA,Not in Lab
+C1131040072,Day 1,V2,NA,2025-04-01,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040040,Day 1,V2,NA,2025-03-17,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040040,Day 8,V4,2025-03-24,NA,Not in Lab
+C1131090005,Day 1,V2,NA,2025-02-25,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040059,Day 1,V2,2025-03-24,NA,Not in Lab
+C1131040019,Day 1,V2,NA,2025-03-11,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040092,Day 1,V2,NA,2025-04-02,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090039,Day 1,V2,NA,2025-03-25,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040039,Day 1,V2,NA,2025-03-12,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131080004,Day 1,V2,NA,NA,Not in Lab
+C1131040027,Day 1,V2,NA,2025-03-12,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090019,Day 1,V2,NA,2025-03-31,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090019,Day 8,V4,2025-04-07,NA,Not in Lab
+C1131040048,Day 1,V2,NA,2025-03-18,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040067,Day 1,V2,NA,2025-03-31,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040041,Day 8,V4,2025-03-24,NA,Not in Lab
+C1131040024,Day 1,V2,NA,2025-03-11,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040066,Day 1,V2,NA,2025-03-26,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131090032,Day 1,V2,NA,2025-03-31,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040020,Day 1,V2,NA,2025-03-11,Sample collected Status is not correct and Sample collection Date is missing in EDC
+C1131040024,NA,NA,NA,2025-03-18,Not in EDC
+C1131090020,NA,V3,NA,2025-03-26,Not in EDC
+C1131090020,NA,V4,NA,2025-03-31,Not in EDC
+C1131090027,NA,V3,NA,2025-03-26,Not in EDC
+C1131090027,NA,V4,NA,2025-03-31,Not in EDC
+C1131090028,NA,PrTB,NA,2025-04-02,Not in EDC
+C1131090028,NA,V4,NA,2025-04-01,Not in EDC
+C1131090031,NA,V3,NA,2025-03-27,Not in EDC
+C1131090031,NA,V4,NA,2025-04-01,Not in EDC
+C1131090039,NA,V3,NA,2025-03-27,Not in EDC
+C1131090039,NA,V4,NA,2025-04-01,Not in EDC
+C1131090057,NA,V3,NA,2025-04-03,Not in EDC
+C1131090064,NA,V3,NA,2025-04-03,Not in EDC
+C1131090067,NA,V3,NA,2025-04-03,Not in EDC

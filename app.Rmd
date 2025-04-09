@@ -1,0 +1,93 @@
+---
+title: "Untitled"
+author: "Vaishali"
+date: "`r Sys.Date()`"
+output: html_document
+---
+#install.packages("later")
+library(shiny)
+library(shinydashboard)
+library(DT)
+library(dplyr)
+library(readr)   # For reading CSV
+library(haven)   # For reading SAS files
+
+
+# UI (User Interface)
+ui <- dashboardPage(
+  dashboardHeader(title = "Lab Report Dashboard"),
+  dashboardSidebar(
+    sidebarMenu(
+      menuItem("Data Table", tabName = "data_table", icon = icon("table"))
+    ),
+    hr(), # Visual separator
+    # Filter controls will be added here dynamically based on columns
+    uiOutput("filter_controls")
+  ),
+  dashboardBody(
+    tabItems(
+      tabItem(tabName = "data_table",
+        fluidRow(
+          box(title = "Lab Report Data", width = 12, DTOutput("report_data_table"))
+        )
+      )
+    )
+  )
+)
+
+# Server (Backend Logic)
+server <- function(input, output, session) {
+  # Data is already in the environment (named 'cfl')
+  all_data <- reactive({
+    print("all_data() is running") # Debugging
+    print(head(cfl)) # Debugging: Show the head of 'cfl'
+    cfl
+  })
+
+ 
+# Filter the data based on user selections
+  filtered_data <- reactive({
+    data_to_filter <- final_data
+    for (col_name in names(final_data)) {
+      filter_value <- input[[paste0("filter_", col_name)]]
+      if (!is.null(filter_value) && !"All" %in% filter_value) {
+        data_to_filter <- data_to_filter %>%
+          filter(.data[[col_name]] %in% filter_value)
+      }
+    }
+    data_to_filter
+  })
+
+ # Apply color coding and display the table
+  output$report_data_table <- renderDT({
+    data_to_render <- filtered_data() # Get the filtered data
+    print("renderDT() is running.") # Debugging
+    print(head(data_to_render)) # Debugging: See what data is being rendered
+    req(data_to_render) # Ensure data is available before rendering
+    datatable(data_to_render) %>%
+      formatStyle(
+        'Flag',
+        backgroundColor = styleEqual(
+          c("Not in EDC"),
+          c("lightpeach")
+        )
+      ) %>%
+      formatStyle(
+        'Flag',
+        target = 'row',
+        backgroundColor = JS(
+          'function(row, data, index) {
+            if (data[ which(Object.keys(data).map(function(key){ return key === "Flag";}) == true) ] && data[ which(Object.keys(data).map(function(key){ return key === "Flag";}) == true) ].includes("Sample collected Status is not correct")) {
+              return "lightcoral";
+            }
+            return "";
+          }'
+        )
+      )
+  })
+  # Output the data table with styles
+  output$report_data_table <- renderDT(datatable_with_styles())
+}
+
+# Run the Shiny app
+shinyApp(ui, server)

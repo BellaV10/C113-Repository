@@ -1,0 +1,209 @@
+---
+title: "Lab Reconciliation"
+author: "Vaishali"
+date: "`r Sys.Date()`"
+output: html_document
+---
+#install.packages("readr")
+#install.packages("kableExtra")
+
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(lubridate)
+setwd("C:/Users/VWaghmare/Git/C113/LabRecon")
+#getwd()
+library(haven)
+#install.packages("Hmisc")
+library("Hmisc")
+#install.packages(c("openxlsx", "labelled"))
+library(openxlsx)
+library(labelled)
+library(kableExtra)
+
+
+sample<- read_sas("C:/Users/VWaghmare/Git/C113/LabRecon/Data/sample.sas7bdat")
+View(sample)
+
+visit <- read_sas("C:/Users/VWaghmare/Git/C113/LabRecon/Data/visit.sas7bdat")
+visit_ <- visit %>% filter(DVSTAT == '1' & !(VISIT %in% c('Screening', 'Screen Fail'))) %>% select(SUBJID, VISIT, VISITNUM, DVSTAT)
+View(visit_)
+
+#merge sample and visit datasets on subject, visit and visitnum
+sam_vis <- inner_join(sample, visit_, by = c("SUBJID", "VISIT", "VISITNUM"))
+View(sam_vis)
+
+
+
+dt <- sam_vis %>% select(SUBJID, SPSTAT, VISIT, VISITNUM, SPDTTM) %>%  mutate(SAMPLE_COL_DATE = as_date(dmy_hm(SPDTTM))) %>% mutate(Merge_Dt = as_date(dmy_hm(SPDTTM))) %>% mutate(VISNUM = case_when(
+  VISITNUM =="D1" ~ "V2",
+  VISITNUM =="D3" ~ "V3",
+  VISITNUM =="D8" ~ "V4",
+  VISITNUM =="D29" ~ "V5",
+  TRUE ~ " "
+)) %>% mutate(edc_sub = SUBJID)
+View(dt)
+dt_ <- dt %>% mutate(EDC_VISIT = VISNUM)
+View(dt_)
+
+#import lab data
+
+
+library(readr)
+
+#create function to call csv file
+read_data <- function(callfl) { 
+  message(paste("Reading data from:", callfl)) # Optional: Show what's being read
+  
+  # Check if the file exists before trying to read (Good Practice!)
+  if (!file.exists(callfl)) {
+    stop(paste("Error: File not found at", callfl)) # Stop execution if file missing
+  }
+  
+  data <- readr::read_csv(callfl) 
+  # ... process data ...
+  return(data)
+}
+path <- "C:/Users/VWaghmare/Git/C113/LabRecon/Data"
+flname <- "C113_Lab_recon_2025-04-07.csv"
+
+path_fl <- file.path(path, flname)
+
+lab_dt <-read_data(path_fl)
+
+#lab_dt<- read_csv("C:/Users/VWaghmare/Git/C113/LabRecon/Data/C113_Lab_recon_2025-04-07.csv")
+View(lab_dt)
+
+lab <- lab_dt %>% mutate(VISNUM = Visit, LAB_VISIT = Visit) %>% mutate(SUBJID = `Subject ID`) %>% mutate(Lab_Draw_date = as.Date(`Date Drawn`, format = "%m/%d/%Y")) %>%  mutate(Merge_Dt = as.Date(`Date Drawn`, format = "%m/%d/%Y"))
+View(lab)
+
+#merge lab data and EDC data
+
+vislab<- full_join(dt_, lab, by =c("SUBJID", "VISNUM"))
+View(vislab)
+
+
+
+vislab_c <- vislab %>% mutate(flag = case_when(
+    is.na(edc_sub) & is.na(EDC_VISIT) ~ 'Not in EDC',
+    SPSTAT == '1' & is.na(`Subject ID`)~ 'Not in Lab',
+    EDC_VISIT == LAB_VISIT & SAMPLE_COL_DATE != Lab_Draw_date ~ 'Date mismatch',
+    SUBJID == `Subject ID` & EDC_VISIT == LAB_VISIT & SPSTAT == '0' & is.na(SAMPLE_COL_DATE)  ~ 'Sample collected Status is not correct and Sample collection Date is missing in EDC',
+    TRUE ~ " "
+)
+)
+View(vislab_c)
+
+
+final <- vislab_c  %>%  select(SUBJID, VISIT, VISNUM,  SAMPLE_COL_DATE, Lab_Draw_date, flag ) 
+View(final)
+
+dup_final <-duplicated(final)
+final_nodup <- final[!dup_final,]
+#View(final_nodup)
+
+
+
+my_labels <- c(SUBJID = 'Subject ID',
+               VISIT = 'Visit in EDC',
+               VISNUM = 'Visit Number',
+               SAMPLE_COL_DATE = 'Sample Collection Date',
+               Lab_Draw_date = 'Lab Draw Date',
+               flag = 'Flag')
+
+
+final_ <- final_nodup
+#View(final_)
+
+
+  
+
+label(final_) <-as.list(my_labels[match(names(final_), names(my_labels))])
+#View(final_)
+final_c <- final_ %>% filter(flag != " ")
+#View(final_c)
+
+get_var_labels <- function(data) {
+  sapply(data, var_label)
+}
+
+# Get variable labels
+var_labels <- get_var_labels(final_c)
+
+# Create a copy of the data frame
+final_with_labels <- final_c
+View(final_with_labels)
+
+# Replace column names with variable labels
+colnames(final_with_labels) <- unname(var_labels)
+
+cfl <- final_with_labels
+View(cfl)
+
+library(openxlsx)
+
+#get today's date
+today <- Sys.Date()
+tdt <- format(today, "%Y-%m-%d")
+# Create the filename
+filename <- paste0("C113_Lab_Reconciliation_", tdt, ".xlsx")
+
+# Create a workbook
+wb <- createWorkbook()
+
+# Add a sheet with a specific name 
+addWorksheet(wb, sheetName = "Lab Recon")
+
+# Write the data to the sheet
+writeData(wb, sheet = "Lab Recon", x = final_with_labels)
+
+header_row <- read.xlsx(wb, sheet = "Lab Recon", rows = 1, cols = 1:ncol(final_with_labels), colNames = FALSE)
+print(header_row)
+print(names(header_row)) # See if names are automatically assigned
+
+# Define the style for yellow fill
+light_yellow_style <- createStyle(bgFill = "lightyellow")
+
+# Define the style for light Blue fill
+light_blue_style <- createStyle(bgFill = "lightblue")
+
+# Define the style for light purple fill
+light_purple_style <- createStyle(bgFill = "thistle")
+
+# Define the style for yello fill
+light_peach_style <- createStyle(bgFill = "peachpuff")
+
+# Apply conditional formatting for "Sample collected Status is not correct and Sample collection Date is missing in EDC" (red background) - REFERENCING COLUMN 6
+conditionalFormatting(wb, sheet = "Lab Recon", cols = 6, rows = 2:(nrow(final_with_labels) + 1),
+                      rule = '$F2="Sample collected Status is not correct and Sample collection Date is missing in EDC"',
+                      style = light_yellow_style)
+
+# Apply conditional formatting for "Not in Lab" (blue background) - REFERENCING COLUMN 6
+conditionalFormatting(wb, sheet = "Lab Recon", cols = 6, rows = 2:(nrow(final_with_labels) + 1),
+                      rule = '$F2="Not in Lab"',
+                      style = light_blue_style)
+                      
+# Apply conditional formatting for "Date mismath" (blue background) - REFERENCING COLUMN 6
+conditionalFormatting(wb, sheet = "Lab Recon", cols = 6, rows = 2:(nrow(final_with_labels) + 1),
+                      rule = '$F2="Date mismatch"',
+                      style = light_purple_style)
+                      
+# Apply conditional formatting for "Not in EDC" (blue background) - REFERENCING COLUMN 6
+
+
+conditionalFormatting(wb, sheet = "Lab Recon", cols = 6, rows = 2:(nrow(final_with_labels) + 1),
+                      rule = '$F2="Not in EDC"',
+                      style = light_peach_style)
+# Save the workbook
+saveWorkbook(wb, file = filename,overwrite = TRUE)
+
+
+
+
+#write.xlsx(final_c, file = "C:/Users/VWaghmare/Git/C113/LabRecon/output/lab_recon.xlsx")
+
+
+
+
+
+
