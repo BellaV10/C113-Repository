@@ -9,6 +9,7 @@ library(haven)   # For reading SAS files
 
 
 # UI (User Interface)
+load("data/cfl.rData")
 ui <- dashboardPage(
   dashboardHeader(title = "C113 Dashboard"),
   dashboardSidebar(

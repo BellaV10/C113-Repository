@@ -134,7 +134,7 @@ final_with_labels <- final_c
 colnames(final_with_labels) <- unname(var_labels)
 
 cfl <- final_with_labels
-# View(cfl)
+#View(cfl)
 save(cfl, file = "C:/Users/VWaghmare/Git/C113/LabRecon/Shiny/data/cfl.RData")
 
 #library(openxlsx)
@@ -189,11 +189,11 @@ save(cfl, file = "C:/Users/VWaghmare/Git/C113/LabRecon/Shiny/data/cfl.RData")
 # # Apply conditional formatting for "Not in EDC" (blue background) - REFERENCING COLUMN 6
 
 
-conditionalFormatting(wb, sheet = "Lab Recon", cols = 6, rows = 2:(nrow(final_with_labels) + 1),
-                      rule = '$F2="Not in EDC"',
-                      style = light_peach_style)
-# Save the workbook
-saveWorkbook(wb, file = filename,overwrite = TRUE)
+# conditionalFormatting(wb, sheet = "Lab Recon", cols = 6, rows = 2:(nrow(final_with_labels) + 1),
+#                       rule = '$F2="Not in EDC"',
+#                       style = light_peach_style)
+# # Save the workbook
+# saveWorkbook(wb, file = filename,overwrite = TRUE)
 
 
 
